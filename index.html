@@ -1,0 +1,1351 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>新疆北疆環線 · 旅遊手冊</title>
+    <style>
+        /* 全局設定與字型 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', 'PingFang TC', 'Microsoft YaHei', sans-serif;
+            background-color: #f5f0eb;
+            color: #2c3e4f;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 1100px;
+            width: 100%;
+            background-color: #ffffff;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+            border-radius: 24px;
+            padding: 50px 60px;
+            position: relative;
+        }
+        /* 裝飾分隔線 */
+        .accent-line {
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #d4a373, #b5835a);
+            border-radius: 4px;
+            margin: 10px 0 20px 0;
+        }
+        .accent-line-center {
+            margin: 10px auto 20px auto;
+        }
+
+        /* 標題系統 */
+        h1 {
+            font-size: 36px;
+            font-weight: 700;
+            color: #2c3e4f;
+            letter-spacing: 2px;
+        }
+        h1 small {
+            font-size: 18px;
+            font-weight: 400;
+            color: #7f8c8d;
+            display: block;
+            margin-top: 6px;
+            letter-spacing: 1px;
+        }
+        h2 {
+            font-size: 26px;
+            font-weight: 600;
+            color: #3d5a6d;
+            margin-top: 45px;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #ecf0f1;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        h2 .badge {
+            font-size: 14px;
+            background: #d4a373;
+            color: white;
+            padding: 2px 12px;
+            border-radius: 30px;
+            font-weight: 500;
+        }
+        h3 {
+            font-size: 20px;
+            font-weight: 600;
+            color: #4a6a7f;
+            margin-top: 30px;
+            margin-bottom: 10px;
+        }
+        h4 {
+            font-size: 17px;
+            font-weight: 600;
+            color: #5d7f94;
+            margin-top: 20px;
+            margin-bottom: 5px;
+        }
+
+        /* 卡片與區塊 */
+        .card-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 15px 0;
+        }
+        .card {
+            background: #faf8f6;
+            border-radius: 16px;
+            padding: 20px 24px;
+            border: 1px solid #f0ebe5;
+            transition: all 0.2s ease;
+        }
+        .card:hover {
+            background: #f8f4ef;
+            border-color: #dccfc4;
+        }
+        .card-title {
+            font-weight: 600;
+            font-size: 16px;
+            color: #5d7f94;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* 表格樣式 */
+        .table-wrap {
+            overflow-x: auto;
+            margin: 18px 0 25px 0;
+            border-radius: 14px;
+            border: 1px solid #ece6e0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 15px;
+            background: white;
+        }
+        th {
+            background: #3d5a6d;
+            color: white;
+            font-weight: 600;
+            padding: 14px 16px;
+            text-align: left;
+        }
+        td {
+            padding: 14px 16px;
+            border-bottom: 1px solid #f0ebe5;
+            vertical-align: top;
+        }
+        tr:last-child td {
+            border-bottom: none;
+        }
+        tr:hover td {
+            background: #fcfaf8;
+        }
+
+        /* 每日行程卡片 (特殊設計) */
+        .day-card {
+            background: #fcfaf8;
+            border-radius: 18px;
+            padding: 25px 30px;
+            margin: 25px 0 15px 0;
+            border-left: 6px solid #d4a373;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+        }
+        .day-card .day-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+            margin-bottom: 12px;
+        }
+        .day-card .day-header .day-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: #2c3e4f;
+        }
+        .day-card .day-header .day-route {
+            font-size: 16px;
+            color: #7f8c8d;
+            font-weight: 400;
+        }
+        .day-tag {
+            display: inline-block;
+            padding: 4px 14px;
+            border-radius: 30px;
+            font-size: 13px;
+            font-weight: 600;
+            background: #ecf0f1;
+            color: #2c3e4f;
+            margin-right: 6px;
+        }
+        .tag-easy { background: #e3f0e8; color: #1e6b4c; }
+        .tag-medium { background: #fdf0e0; color: #b16f2e; }
+        .tag-long { background: #fce4e4; color: #b13e3e; }
+        .tag-hard { background: #f0d6d6; color: #8f2a2a; }
+
+        .weather-box {
+            background: #eef4f8;
+            padding: 12px 18px;
+            border-radius: 12px;
+            margin: 12px 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px 30px;
+            font-size: 15px;
+        }
+        .weather-box strong {
+            color: #2c3e4f;
+        }
+        .weather-box .highlight {
+            color: #b16f2e;
+            font-weight: 600;
+        }
+
+        .dress-advice {
+            background: #f5f0eb;
+            padding: 14px 20px;
+            border-radius: 12px;
+            margin: 10px 0 5px 0;
+            border-left: 4px solid #b5835a;
+            font-weight: 500;
+            color: #2c3e4f;
+        }
+
+        /* 清單樣式 */
+        ul,
+        ol {
+            padding-left: 24px;
+            margin: 10px 0;
+            line-height: 1.7;
+        }
+        li {
+            margin-bottom: 4px;
+        }
+
+        /* 特別提醒方塊 */
+        .tip-box {
+            background: #fcf6ed;
+            border: 1px solid #e6dacf;
+            border-radius: 16px;
+            padding: 20px 28px;
+            margin: 25px 0;
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+        }
+        .tip-box .icon {
+            font-size: 28px;
+            line-height: 1;
+        }
+
+        /* 隨身包推薦 */
+        .pack-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px 16px;
+            background: #fffdfa;
+            border: 2px dashed #d4a373;
+            border-radius: 16px;
+            padding: 20px 24px;
+            margin: 15px 0;
+        }
+        .pack-list span {
+            background: white;
+            padding: 4px 14px;
+            border-radius: 30px;
+            border: 1px solid #ece6e0;
+            font-size: 14px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+        }
+
+        /* 住宿列表 */
+        .hotel-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 12px;
+            margin: 20px 0;
+        }
+        .hotel-item {
+            background: #faf8f6;
+            padding: 14px 18px;
+            border-radius: 12px;
+            border: 1px solid #ece6e0;
+        }
+        .hotel-item .day-label {
+            font-weight: 600;
+            color: #b5835a;
+            font-size: 14px;
+        }
+
+        /* ===== 新增：景點卡片（取代表格） ===== */
+        .spot-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin: 20px 0 30px 0;
+        }
+        .spot-card {
+            background: #fcfaf8;
+            border-radius: 18px;
+            border: 1px solid #ece6e0;
+            overflow: hidden;
+            transition: all 0.2s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        .spot-card:hover {
+            box-shadow: 0 8px 28px rgba(0, 0, 0, 0.06);
+            border-color: #dccfc4;
+        }
+        .spot-card .spot-header {
+            background: #f5f0eb;
+            padding: 16px 22px;
+            border-bottom: 1px solid #ece6e0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 6px 12px;
+        }
+        .spot-card .spot-name {
+            font-size: 18px;
+            font-weight: 700;
+            color: #2c3e4f;
+        }
+        .spot-card .spot-day {
+            font-size: 13px;
+            font-weight: 600;
+            color: #b5835a;
+            background: #fffdfa;
+            padding: 2px 14px;
+            border-radius: 30px;
+            border: 1px solid #e6dacf;
+        }
+        .spot-card .spot-body {
+            padding: 18px 22px 14px 22px;
+            font-size: 14.5px;
+            line-height: 1.9;
+            color: #3d4a5a;
+            flex: 1;
+        }
+        .spot-card .spot-body strong {
+            color: #2c3e4f;
+        }
+        .spot-card .spot-tips {
+            background: #eef4f8;
+            padding: 12px 22px;
+            font-size: 13.5px;
+            color: #2c5a7a;
+            border-top: 1px solid #ece6e0;
+            line-height: 1.7;
+        }
+        .spot-card .spot-tips::before {
+            content: "💡 ";
+            font-weight: 600;
+        }
+        .spot-card .spot-alert {
+            background: #fcf6ed;
+            padding: 10px 22px;
+            font-size: 13.5px;
+            color: #8a6d3b;
+            border-top: 1px solid #ece6e0;
+            line-height: 1.7;
+        }
+        .spot-card .spot-alert::before {
+            content: "⚠️ ";
+            font-weight: 600;
+        }
+
+        /* ===== 新增：合同樣式 ===== */
+        .contract-wrap {
+            background: #fcfaf8;
+            border: 1px solid #ece6e0;
+            border-radius: 18px;
+            overflow: hidden;
+            margin: 25px 0 10px 0;
+        }
+        .contract-head {
+            background: #3d5a6d;
+            color: white;
+            padding: 24px 32px;
+            text-align: center;
+        }
+        .contract-head .contract-label {
+            font-size: 12px;
+            letter-spacing: 3px;
+            color: rgba(255, 255, 255, 0.65);
+            margin-bottom: 6px;
+        }
+        .contract-head .contract-title {
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+        .contract-head .contract-sub {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.55);
+            margin-top: 6px;
+        }
+        .contract-body {
+            padding: 28px 32px;
+        }
+        .contract-price-box {
+            background: #f5f0eb;
+            border: 1px solid #e6dacf;
+            border-radius: 14px;
+            padding: 20px 24px;
+            margin-bottom: 28px;
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+        .contract-price-box .price {
+            text-align: center;
+            flex-shrink: 0;
+        }
+        .contract-price-box .price .amount {
+            font-size: 42px;
+            font-weight: 700;
+            color: #b5835a;
+            line-height: 1;
+            font-family: 'Segoe UI', 'PingFang TC', sans-serif;
+        }
+        .contract-price-box .price .currency {
+            font-size: 14px;
+            color: #5d7f94;
+        }
+        .contract-price-box .divider {
+            width: 1px;
+            height: 54px;
+            background: #e6dacf;
+            flex-shrink: 0;
+        }
+        .contract-price-box .info {
+            font-size: 14px;
+            color: #4a5a6a;
+            line-height: 2;
+        }
+        .contract-price-box .info strong {
+            color: #2c3e4f;
+        }
+
+        .contract-item {
+            display: grid;
+            grid-template-columns: 34px 1fr;
+            gap: 14px;
+            align-items: start;
+            margin-bottom: 14px;
+            padding: 10px 14px;
+            background: white;
+            border-radius: 10px;
+            border: 1px solid #f0ebe5;
+        }
+        .contract-item .num {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: #d4a373;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            font-weight: 700;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        .contract-item .num.gift {
+            background: #b5835a;
+        }
+        .contract-item .item-title {
+            font-weight: 600;
+            font-size: 15px;
+            color: #2c3e4f;
+            margin-bottom: 2px;
+        }
+        .contract-item .item-body {
+            font-size: 14px;
+            color: #4a5a6a;
+            line-height: 1.8;
+        }
+        .contract-item .item-body ul {
+            padding-left: 20px;
+            margin: 4px 0;
+        }
+
+        .contract-not-include {
+            display: flex;
+            gap: 12px;
+            padding: 12px 16px;
+            background: #fdf3f3;
+            border-left: 4px solid #c0392b;
+            border-radius: 0 8px 8px 0;
+            font-size: 14px;
+            color: #4a3a3a;
+            line-height: 1.8;
+            margin-bottom: 10px;
+        }
+        .contract-not-include .mark {
+            color: #c0392b;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .contract-driver-box {
+            background: #eef4f8;
+            border-radius: 12px;
+            padding: 18px 22px;
+            font-size: 14px;
+            color: #2c4a5a;
+            line-height: 2;
+            border-left: 4px solid #4a90b8;
+        }
+        .contract-driver-box ul {
+            padding-left: 22px;
+            margin: 6px 0;
+        }
+        .contract-driver-box .note {
+            background: white;
+            padding: 10px 16px;
+            border-radius: 8px;
+            margin-top: 10px;
+            font-size: 13px;
+            color: #3d5a6d;
+            border: 1px solid #d6e4ed;
+        }
+
+        /* 響應式 */
+        @media (max-width: 768px) {
+            .container {
+                padding: 25px 20px;
+            }
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+            .spot-grid {
+                grid-template-columns: 1fr;
+            }
+            .day-card {
+                padding: 20px;
+            }
+            .day-card .day-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 6px;
+            }
+            .weather-box {
+                flex-direction: column;
+                gap: 4px;
+            }
+            .tip-box {
+                flex-direction: column;
+            }
+            h1 {
+                font-size: 28px;
+            }
+            .contract-body {
+                padding: 20px 16px;
+            }
+            .contract-price-box {
+                flex-direction: column;
+                align-items: stretch;
+                text-align: center;
+            }
+            .contract-price-box .divider {
+                width: auto;
+                height: 1px;
+                margin: 6px 0;
+            }
+            .contract-item {
+                grid-template-columns: 1fr;
+                gap: 6px;
+                padding: 12px 14px;
+            }
+            .contract-item .num {
+                margin-top: 0;
+            }
+        }
+
+        /* 列印優化 */
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            .container {
+                box-shadow: none;
+                border-radius: 0;
+                padding: 30px;
+            }
+            .card:hover {
+                background: #faf8f6;
+            }
+            .day-card {
+                break-inside: avoid;
+            }
+            .table-wrap {
+                break-inside: auto;
+            }
+            h2 {
+                break-after: avoid;
+            }
+            .spot-card {
+                break-inside: avoid;
+            }
+            .contract-wrap {
+                break-inside: avoid;
+            }
+        }
+
+        /* 輔助 */
+        .text-center {
+            text-align: center;
+        }
+        .mt-10 {
+            margin-top: 10px;
+        }
+        .mb-10 {
+            margin-bottom: 10px;
+        }
+        .inline-icon {
+            margin-right: 6px;
+        }
+        .fw-600 {
+            font-weight: 600;
+        }
+        .color-primary {
+            color: #3d5a6d;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <!-- ===== 封面 ===== -->
+        <div style="text-align: center; padding: 20px 0 30px 0;">
+            <div style="font-size: 14px; letter-spacing: 4px; color: #b5835a; font-weight: 600; margin-bottom: 8px;">2026 · 秋</div>
+            <h1>新疆北疆環線<br><small>12天11晚 · 深度漫遊</small></h1>
+            <div class="accent-line-center"></div>
+            <div style="display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; color: #5d7f94; font-size: 16px; margin-top: 12px;">
+                <span>📅 2026.8.26 – 9.6</span>
+                <span>👥 14人</span>
+                <span>🚐 3輛 1+1 商務車</span>
+            </div>
+        </div>
+
+        <!-- ===== 目錄 ===== -->
+        <div style="background: #f8f4ef; border-radius: 16px; padding: 20px 30px; margin-bottom: 30px;">
+            <div style="font-weight: 600; font-size: 14px; color: #7f8c8d; letter-spacing: 2px; margin-bottom: 8px;">CONTENTS</div>
+            <div style="display: flex; flex-wrap: wrap; gap: 8px 25px; font-size: 15px;">
+                <a href="#sec1" style="color: #2c3e4f; text-decoration: none; border-bottom: 1px solid transparent;">一、出發前必讀</a>
+                <a href="#sec2" style="color: #2c3e4f; text-decoration: none; border-bottom: 1px solid transparent;">二、行程總覽</a>
+                <a href="#sec3" style="color: #2c3e4f; text-decoration: none; border-bottom: 1px solid transparent;">三、每日行程</a>
+                <a href="#sec4" style="color: #2c3e4f; text-decoration: none; border-bottom: 1px solid transparent;">四、精華景點</a>
+                <a href="#sec5" style="color: #2c3e4f; text-decoration: none; border-bottom: 1px solid transparent;">五、穿搭與裝備</a>
+                <a href="#sec6" style="color: #2c3e4f; text-decoration: none; border-bottom: 1px solid transparent;">六、攜帶清單</a>
+                <a href="#sec7" style="color: #2c3e4f; text-decoration: none; border-bottom: 1px solid transparent;">七、重要提醒</a>
+                <a href="#sec8" style="color: #2c3e4f; text-decoration: none; border-bottom: 1px solid transparent;">八、時間與作息</a>
+                <a href="#sec9" style="color: #2c3e4f; text-decoration: none; border-bottom: 1px solid transparent;">九、住宿一覽</a>
+                <a href="#sec10" style="color: #2c3e4f; text-decoration: none; border-bottom: 1px solid transparent;">十、旅遊合同</a>
+            </div>
+        </div>
+
+        <!-- ========================================================= -->
+        <!-- 一、出發前必讀 -->
+        <h2 id="sec1">一、出發前必讀</h2>
+        <div class="card-grid">
+            <div class="card">
+                <div class="card-title">📄 證件與支付</div>
+                <ul style="margin:0; padding-left:18px; font-size:15px;">
+                    <li><strong>台胞證</strong>：效期6個月以上，務必隨身攜帶正本。</li>
+                    <li><strong>身分證＋護照</strong>：正本與影本分開存放，手機備份電子檔。</li>
+                    <li><strong>行動支付</strong>：支付寶／微信支付，出發前開通並儲值。</li>
+                    <li><strong>現金</strong>：準備少量人民幣備用。</li>
+                    <li><strong>網路</strong>：購買eSIM或開通國際漫遊。</li>
+                </ul>
+            </div>
+            <div class="card">
+                <div class="card-title">🌤️ 新疆旅遊特性</div>
+                <ul style="margin:0; padding-left:18px; font-size:15px;">
+                    <li><strong>晝夜溫差極大</strong>（可達20℃以上）：山區清晨近0℃，正午河谷可達30℃。</li>
+                    <li><strong>紫外線強、空氣乾燥</strong>：防曬、保濕務必做好。</li>
+                    <li><strong>車程長</strong>：單日拉車5~7小時，備妥頸枕、暈車藥。</li>
+                    <li><strong>主動補水</strong>：氣候乾燥，不等口渴才喝。</li>
+                    <li><strong>獨庫公路</strong>：天氣多變，可能臨時改道。</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- ========================================================= -->
+        <!-- 二、行程總覽 -->
+        <h2 id="sec2">二、行程總覽</h2>
+        <div class="table-wrap">
+            <table>
+                <thead><tr><th>Day</th><th>日期</th><th>路線</th><th>車程</th><th>分級</th><th>體力</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>D1</strong></td><td>8/26</td><td>台北→阿勒泰</td><td>30km／1h</td><td><span class="day-tag tag-easy">輕鬆</span></td><td>低</td></tr>
+                    <tr><td><strong>D2</strong></td><td>8/27</td><td>阿勒泰→禾木村</td><td>220km／4h</td><td><span class="day-tag tag-medium">中等</span></td><td>中</td></tr>
+                    <tr><td><strong>D3</strong></td><td>8/28</td><td>禾木→喀納斯</td><td>80km／1.5h</td><td><span class="day-tag tag-easy">輕鬆</span></td><td>中</td></tr>
+                    <tr><td><strong>D4</strong></td><td>8/29</td><td>喀納斯→布爾津</td><td>200km／4h</td><td><span class="day-tag tag-medium">中等</span></td><td>中</td></tr>
+                    <tr><td><strong>D5</strong></td><td>8/30</td><td>布爾津→奎屯</td><td>450km／7.5h</td><td><span class="day-tag tag-long">偏長</span></td><td>中</td></tr>
+                    <tr><td><strong>D6</strong></td><td>8/31</td><td>奎屯→賽里木湖</td><td>315km／5.5h</td><td><span class="day-tag tag-medium">中等</span></td><td>中</td></tr>
+                    <tr><td><strong>D7</strong></td><td>9/1</td><td>賽里木湖→伊寧</td><td>170km／2h</td><td><span class="day-tag tag-easy">輕鬆</span></td><td>低</td></tr>
+                    <tr><td><strong>D8</strong></td><td>9/2</td><td>伊寧→那拉提</td><td>300km／3.5h</td><td><span class="day-tag tag-medium">中等</span></td><td>中高</td></tr>
+                    <tr><td><strong>D9</strong></td><td>9/3</td><td>那拉提→唐布拉（獨庫）</td><td>490km／6h</td><td><span class="day-tag tag-hard">辛苦</span></td><td>高</td></tr>
+                    <tr><td><strong>D10</strong></td><td>9/4</td><td>唐布拉→烏魯木齊（獨庫）</td><td>420km／7h</td><td><span class="day-tag tag-hard">辛苦</span></td><td>高</td></tr>
+                    <tr><td><strong>D11</strong></td><td>9/5</td><td>烏魯木齊市區</td><td>市區短程</td><td><span class="day-tag tag-easy">輕鬆</span></td><td>低</td></tr>
+                    <tr><td><strong>D12</strong></td><td>9/6</td><td>烏魯木齊→台北</td><td>機場接駁</td><td><span class="day-tag tag-easy">輕鬆</span></td><td>低</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <div style="display:flex; flex-wrap:wrap; gap:8px 20px; font-size:14px; color:#5d7f94; margin-bottom:10px;">
+            <span><span class="day-tag tag-easy">輕鬆</span> 1~2h</span>
+            <span><span class="day-tag tag-medium">中等</span> 2~4h</span>
+            <span><span class="day-tag tag-long">偏長</span> 4~5h+</span>
+            <span><span class="day-tag tag-hard">辛苦</span> 6h+ 或山路</span>
+        </div>
+
+        <!-- ========================================================= -->
+        <!-- 三、每日行程 -->
+        <h2 id="sec3">三、每日行程詳覽</h2>
+
+        <!-- D1 -->
+        <div class="day-card">
+            <div class="day-header"><span class="day-title">D1｜8/26（三）抵達阿勒泰・適應日</span><span class="day-route">台北 → 阿勒泰</span></div>
+            <div><span class="day-tag tag-easy">輕鬆</span> 車程30km / 1h</div>
+            <div style="margin-top:6px;"><strong>景點</strong>：金山市場、將軍山纜車日落</div>
+            <div class="weather-box">
+                <span><strong>預估天氣</strong>：阿勒泰市區 10～22℃，陣雨轉多雲</span>
+                <span><strong>體感</strong>：傍晚降溫明顯，風大偏涼</span>
+            </div>
+            <div class="dress-advice">🧥 白天：長袖T恤。傍晚/遇雨：加防風薄外套＋中層。必備折疊傘。</div>
+            <div style="font-size:14px; color:#5d7f94; margin-top:6px;">🏨 住宿：阿勒泰桔子水晶酒店 ｜ 提醒：適應時差，早點休息</div>
+        </div>
+
+        <!-- D2 -->
+        <div class="day-card">
+            <div class="day-header"><span class="day-title">D2｜8/27（四）阿勒泰 → 禾木村</span><span class="day-route">阿禾公路 · 哈登觀景台</span></div>
+            <div><span class="day-tag tag-medium">中等</span> 車程220km / 4h (山路彎道多)</div>
+            <div style="margin-top:6px;"><strong>景點</strong>：阿禾公路、禾木村、哈登觀景台、篝火晚會</div>
+            <div class="weather-box">
+                <span><strong>預估天氣</strong>：阿勒泰 11～23℃多雲轉晴；禾木河谷 11～30℃</span>
+                <span><strong>體感</strong>：河谷白天22-28℃，清晨/傍晚僅7-13℃</span>
+            </div>
+            <div class="dress-advice">🧥 洋蔥式：薄長袖＋刷毛中層＋防風外套。傍晚觀景台需全套穿上，備帽子。</div>
+            <div style="font-size:14px; color:#5d7f94; margin-top:6px;">🏨 住宿：禾木肖·峙霓精品山居酒店 ｜ 提醒：暈車藥上車前30分鐘服用</div>
+        </div>
+
+        <!-- D3 -->
+        <div class="day-card">
+            <div class="day-header"><span class="day-title">D3｜8/28（五）禾木晨霧 → 喀納斯</span><span class="day-route">白樺林 · 觀魚台</span></div>
+            <div><span class="day-tag tag-easy">輕鬆</span> 車程80km / 1.5h ｜ ⏰ 早起5:30看晨霧</div>
+            <div style="margin-top:6px;"><strong>景點</strong>：禾木晨霧、白樺林、喀納斯湖、觀魚台、圖瓦族家訪</div>
+            <div class="weather-box">
+                <span><strong>預估天氣</strong>：禾木 15～31℃晴轉多雲；喀納斯景區 5～17℃</span>
+                <span><strong>體感</strong>：清晨晨霧接近0-5℃，觀魚台風大</span>
+            </div>
+            <div class="dress-advice">🧥 清晨：薄羽絨/厚外套＋帽子＋手套。白天回暖可脫至「長袖＋薄外套」。外套務必隨身帶。</div>
+            <div style="font-size:14px; color:#5d7f94; margin-top:6px;">🏨 住宿：停泊Stay自怡民宿 ｜ 提醒：觀魚台登階依體力決定</div>
+        </div>
+
+        <!-- D4 -->
+        <div class="day-card">
+            <div class="day-header"><span class="day-title">D4｜8/29（六）喀納斯 → 布爾津</span><span class="day-route">三灣 · 五彩灘落日</span></div>
+            <div><span class="day-tag tag-medium">中等</span> 車程200km / 4h</div>
+            <div style="margin-top:6px;"><strong>景點</strong>：神仙灣、月亮灣、臥龍灣、五彩灘落日</div>
+            <div class="weather-box">
+                <span><strong>預估天氣</strong>：布爾津 13～27℃，晴；五彩灘傍晚風大</span>
+                <span><strong>體感</strong>：日落後（約21:00）降溫極快</span>
+            </div>
+            <div class="dress-advice">🧥 長袖長褲＋防風外套（傍晚必備）。木棧道穿防滑鞋。看落日時帽子不可少。</div>
+            <div style="font-size:14px; color:#5d7f94; margin-top:6px;">🏨 住宿：叁甸·觀景酒店 ｜ 提醒：備零食，可能錯過正常晚餐</div>
+        </div>
+
+        <!-- D5 -->
+        <div class="day-card">
+            <div class="day-header"><span class="day-title">D5｜8/30（日）布爾津 → 奎屯</span><span class="day-route">烏爾禾魔鬼城</span></div>
+            <div><span class="day-tag tag-long">偏長</span> 車程450km / 7.5h (最長車程之一)</div>
+            <div style="margin-top:6px;"><strong>景點</strong>：世界魔鬼城（風蝕雅丹）</div>
+            <div class="weather-box">
+                <span><strong>預估天氣</strong>：布爾津 14～25℃，晴轉雨；魔鬼城無遮蔭</span>
+                <span><strong>體感</strong>：白天炎熱，早晚涼，紫外線極強</span>
+            </div>
+            <div class="dress-advice">🧥 寬鬆長袖長褲＋薄外套。防曬乳＋太陽眼鏡＋寬檐帽必備！車上備拖鞋/頸枕。</div>
+            <div style="font-size:14px; color:#5d7f94; margin-top:6px;">🏨 住宿：季楓國際酒店 ｜ 提醒：搭景區小火車減少步行</div>
+        </div>
+
+        <!-- D6 -->
+        <div class="day-card">
+            <div class="day-header"><span class="day-title">D6｜8/31（一）奎屯 → 賽里木湖</span><span class="day-route">VIP環湖</span></div>
+            <div><span class="day-tag tag-medium">中等</span> 車程315km / 5.5h ｜ 海拔約2,070m</div>
+            <div style="margin-top:6px;"><strong>景點</strong>：月亮灣、點將台、帆船、天鵝樂水</div>
+            <div class="weather-box">
+                <span><strong>預估天氣</strong>：賽里木湖 13～19℃，湖區風大</span>
+                <span><strong>體感</strong>：風大體感再降3-5℃，接近5-10℃</span>
+            </div>
+            <div class="dress-advice">🧥 防風外套＋刷毛/針織中層＋長褲。帽子要有綁帶，亮色圍巾拍照又防風。</div>
+            <div style="font-size:14px; color:#5d7f94; margin-top:6px;">🏨 住宿：賽里木湖桔子水晶酒店 ｜ 提醒：多次上下車，注意清點人數</div>
+        </div>
+
+        <!-- D7 -->
+        <div class="day-card">
+            <div class="day-header"><span class="day-title">D7｜9/1（二）賽里木湖 → 伊寧</span><span class="day-route">果子溝 · 喀贊其</span></div>
+            <div><span class="day-tag tag-easy">輕鬆</span> 車程170km / 2h ｜ ⏰ 早起看日出</div>
+            <div style="margin-top:6px;"><strong>景點</strong>：賽湖日出、S灣、果子溝大橋、喀贊其、六星街</div>
+            <div class="weather-box">
+                <span><strong>預估天氣</strong>：賽湖清晨8～9℃；伊寧白天15～25℃</span>
+                <span><strong>體感</strong>：清晨湖邊極冷，體感接近0-5℃</span>
+            </div>
+            <div class="dress-advice">🧥 清晨看日出：厚外套/薄羽絨＋帽子＋圍巾（全套）。白天伊寧回暖至20℃+，脫至「長袖＋薄外套」。</div>
+            <div style="font-size:14px; color:#5d7f94; margin-top:6px;">🏨 住宿：伊寧福朋喜來登酒店 ｜ 提醒：街區活動約好集合時間</div>
+        </div>
+
+        <!-- D8 -->
+        <div class="day-card">
+            <div class="day-header"><span class="day-title">D8｜9/2（三）伊寧 → 那拉提</span><span class="day-route">空中草原 · 騎馬</span></div>
+            <div><span class="day-tag tag-medium">中等</span> 車程300km / 3.5h</div>
+            <div style="margin-top:6px;"><strong>景點</strong>：天界台、小羊羔合影、騎馬漫步、網紅橋</div>
+            <div class="weather-box">
+                <span><strong>預估天氣</strong>：那拉提草原 18～28℃</span>
+                <span><strong>體感</strong>：紫外線極強，騎馬時風大</span>
+            </div>
+            <div class="dress-advice">🧥 薄長袖＋防曬薄外套。騎馬務必穿長褲。防曬乳、寬檐帽、太陽眼鏡缺一不可。</div>
+            <div style="font-size:14px; color:#5d7f94; margin-top:6px;">🏨 住宿：那拉提拈花灣哈茵賽度假飯店 ｜ 提醒：騎馬依自身狀況決定</div>
+        </div>
+
+        <!-- D9 -->
+        <div class="day-card">
+            <div class="day-header"><span class="day-title">D9｜9/3（四）那拉提 → 唐布拉</span><span class="day-route">獨庫公路 · 百里畫廊</span></div>
+            <div><span class="day-tag tag-hard">辛苦</span> 車程490km / 6h (全程最辛苦日)</div>
+            <div style="margin-top:6px;"><strong>景點</strong>：獨庫公路、喬爾瑪烈士陵園、唐布拉百里畫廊、仙女湖</div>
+            <div class="weather-box">
+                <span><strong>預估天氣</strong>：山腳20-25℃；高海拔垭口僅5-12℃，夜間近0℃</span>
+                <span><strong>體感</strong>：一日四季，彎道多易暈車</span>
+            </div>
+            <div class="dress-advice">🧥 終極洋蔥式：內層速乾長袖＋刷毛中層＋薄羽絨＋防風外套。高海拔備帽子+手套，下車拍照立刻穿上。</div>
+            <div style="font-size:14px; color:#5d7f94; margin-top:6px;">🏨 住宿：桃里·孟克特隱世庄園 ｜ 提醒：備足水與乾糧，暈車藥務必服用</div>
+        </div>
+
+        <!-- D10 -->
+        <div class="day-card">
+            <div class="day-header"><span class="day-title">D10｜9/4（五）唐布拉 → 烏魯木齊</span><span class="day-route">獨庫公路 · 哈希勒根達坂</span></div>
+            <div><span class="day-tag tag-hard">辛苦</span> 車程420km / 7h (連續山路)</div>
+            <div style="margin-top:6px;"><strong>景點</strong>：哈希勒根達坂(3390m)、獨山子大峽谷</div>
+            <div class="weather-box">
+                <span><strong>預估天氣</strong>：達坂接近0-5℃；烏魯木齊15～25℃多雲轉陰</span>
+                <span><strong>體感</strong>：高海拔寒冷，連續山路疲勞</span>
+            </div>
+            <div class="dress-advice">🧥 同D9：洋蔥式多層（薄羽絨＋防風外套）＋帽子＋手套。抵達烏魯木齊後可脫至薄外套。</div>
+            <div style="font-size:14px; color:#5d7f94; margin-top:6px;">🏨 住宿：烏魯木齊鎏金藝術酒店 ｜ 提醒：保留體力，不安排額外活動</div>
+        </div>
+
+        <!-- D11 -->
+        <div class="day-card">
+            <div class="day-header"><span class="day-title">D11｜9/5（六）烏魯木齊自由活動</span><span class="day-route">大巴扎 · 博物館</span></div>
+            <div><span class="day-tag tag-easy">輕鬆</span> 市區短程</div>
+            <div style="margin-top:6px;"><strong>推薦</strong>：新疆博物館、國際大巴扎、金泉商場、和田二街</div>
+            <div class="weather-box">
+                <span><strong>預估天氣</strong>：烏魯木齊 14～26℃，陰轉雨</span>
+                <span><strong>體感</strong>：白天舒適，可能有雨</span>
+            </div>
+            <div class="dress-advice">🧥 薄長袖＋薄外套。攜帶折疊傘。穿舒適好走的鞋。</div>
+            <div style="font-size:14px; color:#5d7f94; margin-top:6px;">🏨 住宿：烏魯木齊鎏金藝術酒店 ｜ 提醒：結伴同行，博物館建議預約</div>
+        </div>
+
+        <!-- D12 -->
+        <div class="day-card">
+            <div class="day-header"><span class="day-title">D12｜9/6（日）返程日</span><span class="day-route">烏魯木齊 → 台北</span></div>
+            <div><span class="day-tag tag-easy">輕鬆</span> 機場接駁</div>
+            <div class="weather-box">
+                <span><strong>預估天氣</strong>：烏魯木齊 15～25℃</span>
+            </div>
+            <div class="dress-advice">🧥 舒適搭機穿著＋薄外套（機場冷氣強）。貴重證件、行動電源放隨身行李。</div>
+            <div style="font-size:14px; color:#5d7f94; margin-top:6px;">提醒：再次確認台胞證、護照，液體不可托運</div>
+        </div>
+
+        <!-- ========================================================= -->
+        <!-- 四、精華景點（以將軍山日落.txt 內容替換） -->
+        <h2 id="sec4">四、精華景點深度導覽</h2>
+
+        <div class="spot-grid">
+
+            <!-- 1. 將軍山日落 -->
+            <div class="spot-card">
+                <div class="spot-header">
+                    <span class="spot-name">🌄 將軍山日落</span>
+                    <span class="spot-day">D1 · 阿勒泰</span>
+                </div>
+                <div class="spot-body">
+                    將軍山位於阿勒泰市郊，僅距離市區兩公里，是國內距離城市最近的高山度假區之一。夏季搭乘<strong>全景觀光纜車</strong>緩緩攀升至山頂，腳下林海鋪展，整座阿勒泰河谷小城盡收眼底。將軍山是全國唯一的<strong>城市高山滑雪場</strong>，夏季更創新打造纜車觀光、雲端日落派對等多元文旅體驗。<br><br>
+                    <strong>核心體驗：</strong>務必等待傍晚日落，8月底9月初黃金觀賞窗口約在<strong>20:30–21:30</strong>之間。夕陽緩緩下沉，暖金色霞光鋪滿山谷；日落後迎來藍調時刻，淡藍色天幕搭配城市漸次亮起的燈火，氛圍感極佳。山頂「夕陽之眼」拱門是拍攝剪影大片的絕佳機位。除纜車外，也可沿環山木棧道徒步登山，沿途設有多處觀景平台。
+                </div>
+                <div class="spot-tips">山頂風大，即使盛夏傍晚也需備一件薄外套；注意纜車末班時間，切勿錯過下山車次。</div>
+            </div>
+
+            <!-- 2. 禾木村・白樺晨霧 -->
+            <div class="spot-card">
+                <div class="spot-header">
+                    <span class="spot-name">🌲 禾木村・白樺晨霧</span>
+                    <span class="spot-day">D2～D3 · 禾木</span>
+                </div>
+                <div class="spot-body">
+                    禾木村坐落於阿爾泰山深處，是一個由<strong>哈薩克人和圖瓦人</strong>共同聚居的小村莊。全村統一為原木尖頂木屋，禾木河穿村而過，河谷兩岸白樺與松柏交錯。這裡保留著原始的遊牧民俗，村民淳樸好客，隨處可見手作小店與特色奶茶館。<br><br>
+                    <strong>核心體驗：</strong>清晨約<strong>5:30</strong>登上哈登觀景平台，河谷薄霧緩緩升騰，輕柔纏繞木屋樹梢，嫋嫋炊煙慢悠悠飄向山林，整片村莊朦朧宛若仙境。日出漫灑金光，把山野、村落、河水盡數染暖——這便是禾木<strong>聞名全網的晨霧名場面</strong>。傍晚可參與篝火晚會，感受圖瓦族熱情待客之道。
+                </div>
+                <div class="spot-tips">禾木村內以步行、騎馬為主；山區晝夜溫差極大，務必備妥保暖衣物；旺季住宿需提前預訂。</div>
+            </div>
+
+            <!-- 3. 喀納斯湖・觀魚台・圖瓦族家訪 -->
+            <div class="spot-card">
+                <div class="spot-header">
+                    <span class="spot-name">💎 喀納斯湖・觀魚台・圖瓦族家訪</span>
+                    <span class="spot-day">D3 · 喀納斯景區</span>
+                </div>
+                <div class="spot-body">
+                    喀納斯湖海拔1,374公尺，湖水因季節與光線變幻呈現<strong>翡翠綠、孔雀藍</strong>等多種色澤，被譽為「神的花園」。湖中盛傳有哲羅鮭「湖怪」傳說。<br><br>
+                    <strong>觀魚台：</strong>需攀登<strong>1,068級台階</strong>才能抵達，因處觀察「湖怪」最佳位置而得名。登頂後可360度俯瞰喀納斯湖全景，視野壯闊。<br><br>
+                    <strong>圖瓦族家訪：</strong>走進喀納斯湖畔的圖瓦人村落，品嚐特色奶茶和包爾薩克（一種油炸麵食），聆聽主人用 <strong>「蘇爾」</strong>（圖瓦族傳統樂器）吹奏悠揚樂曲。圖瓦人屬於蒙古族古老支系，保留著薩滿教遺俗。
+                </div>
+                <div class="spot-tips">觀魚台階梯多，建議帶水、慢慢爬；景區內住宿緊張，建議提前預訂。</div>
+            </div>
+
+            <!-- 4. 五彩灘 -->
+            <div class="spot-card">
+                <div class="spot-header">
+                    <span class="spot-name">🎨 五彩灘</span>
+                    <span class="spot-day">D4 · 布爾津</span>
+                </div>
+                <div class="spot-body">
+                    五彩灘位於布爾津縣城西北約24公里處的額爾齊斯河北岸，屬於典型的<strong>雅丹地貌</strong>，由流水侵蝕與風蝕作用共同形成。岩層由紅色、土紅色、淺黃色、淺綠色砂岩、泥岩及沙礫岩組成，色彩繽紛。對岸則是一片鬱鬱蔥蔥的胡楊林，形成 <strong>「一河隔兩岸，風光兩重天」</strong> 的奇景。<br><br>
+                    <strong>核心體驗：</strong>日落前1小時是最佳遊玩時間。夕陽將五彩灘染成金紅、橙黃、紫褐等絢爛色彩，彷彿大地在燃燒。傍晚時常出現長時間金黃色或紅色的夕陽，照耀在五彩地貌上非常壯觀。
+                </div>
+                <div class="spot-tips">景區風沙較大，做好防曬防塵；<strong>彩色岩層極其脆弱，禁止踩踏、攀爬、刻畫</strong>；走正規景區入口購票入園。</div>
+            </div>
+
+            <!-- 5. 世界魔鬼城 -->
+            <div class="spot-card">
+                <div class="spot-header">
+                    <span class="spot-name">🗿 世界魔鬼城</span>
+                    <span class="spot-day">D5 · 烏爾禾</span>
+                </div>
+                <div class="spot-body">
+                    世界魔鬼城位於克拉瑪依市烏爾禾區，景區總面積<strong>126平方公里</strong>，雅丹地貌核心區面積30平方公里。它是我國<strong>地質形成最早、品質最高、資源最密集</strong>的雅丹地貌景區，集戈壁雅丹、沙漠峽谷、石灘胡楊、天然瀝青等自然景觀於一體，被評選為 <strong>「中國最美三大雅丹」第一名</strong>。大約一億多年前的白堊紀，這裡曾是一片湖泊，經過千百年風雨剝蝕後形成今日奇觀。<br><br>
+                    <strong>核心體驗：</strong>景區內形態各異的風蝕岩群，或如殿、台、閣、堡，或如人、禽、獸、畜。每當狂風襲來，呼嘯而過的大風席捲沙粒，耳旁淒厲呼嘯如同鬼哭狼嚎。最迷人的時刻當屬日落時分，光與影交織出迷幻色彩。已累積<strong>150多部影劇</strong>在此拍攝，包括《臥虎藏龍》《英雄》。
+                </div>
+                <div class="spot-tips">建議搭<strong>景區小火車</strong>遊覽，減少步行；日落時分光影最迷人。</div>
+            </div>
+
+            <!-- 6. 賽里木湖 -->
+            <div class="spot-card">
+                <div class="spot-header">
+                    <span class="spot-name">🏔 賽里木湖</span>
+                    <span class="spot-day">D6～D7 · 賽里木湖</span>
+                </div>
+                <div class="spot-body">
+                    賽里木湖位於新疆博爾塔拉蒙古自治州，湖面海拔<strong>2,073米</strong>，面積約458平方公里，是<strong>新疆海拔最高、面積最大的高山湖泊</strong>。因是大西洋暖濕氣流最後眷顧的地方，被稱為 <strong>「大西洋最後一滴眼淚」</strong> 。<br><br>
+                    <strong>核心體驗：</strong>90公里環湖公路沿途處處是景。月亮灣可拍攝湖面全景；克勒湧珠常遇見成群<strong>野生天鵝</strong>在碧藍湖面上游弋嬉戲；松樹頭可登頂看落日。可乘<strong>帆船</strong>泛舟湖面，順路遠眺果子溝大橋。夏季湖畔野花盛開。傍晚湖面折射柔光，氛圍感絕佳。
+                </div>
+                <div class="spot-tips">湖面風力極強、晝夜溫差大，防風外套與全套防曬必備；海拔2,000米以上，緩步慢行；<strong>禁止投喂驚擾天鵝</strong>；天氣多變，隨身帶雨衣。</div>
+            </div>
+
+            <!-- 7. 伊寧・喀贊其・六星街 -->
+            <div class="spot-card">
+                <div class="spot-header">
+                    <span class="spot-name">🏘 伊寧・喀贊其・六星街</span>
+                    <span class="spot-day">D7 · 伊寧</span>
+                </div>
+                <div class="spot-body">
+                    伊寧是中國最具異域風情的邊境城市之一。<strong>喀贊其</strong>是維吾爾族歷史文化街區，保留百年傳統民居，藍色牆面、雕花木窗、葡萄架構成獨特的生活畫卷。<strong>六星街</strong>因蜘蛛網狀放射狀道路設計得名，多民族文化在此和諧交融。喀贊其的藍色建築街區非常適合拍照。
+                </div>
+                <div class="spot-tips">👗 穿<strong>白色或淺色</strong>衣物，與藍色背景對比效果最佳。</div>
+            </div>
+
+            <!-- 8. 那拉提空中草原 -->
+            <div class="spot-card">
+                <div class="spot-header">
+                    <span class="spot-name">🪂 那拉提空中草原</span>
+                    <span class="spot-day">D8 · 那拉提</span>
+                </div>
+                <div class="spot-body">
+                    那拉提草原位於伊犁天山深處，蒙古語意為<strong>「最先見到太陽的地方」</strong>。這裡是<strong>世界四大高山河谷草原之一</strong>，雪山連綿、雲杉成片、河谷草場鋪展千里，被譽為 <strong>「天山綠寶石」</strong> 。<br><br>
+                    <strong>核心體驗：</strong><br>
+                    • <strong>空中草原自駕：</strong>在雪山下的綠毯上馳騁，天界台可俯瞰全景。<br>
+                    • <strong>騎馬漫步：</strong>可選哈薩克族牧民的馬匹（性情溫順），讓牧民帶你深入草原深處拍攝雪山背景照。價格約<strong>80元/小時</strong>。<br>
+                    • <strong>哈薩克民俗體驗：</strong>走進草原氈房，喝現煮奶茶、吃手抓肉，沉浸式體驗遊牧生活。
+                </div>
+                <div class="spot-tips">傍晚6點後光線柔和，拍草原日落絕佳；<strong>紫外線極強</strong>，防曬乳、帽子、太陽眼鏡缺一不可；早晚溫差10℃以上，備薄外套。</div>
+            </div>
+
+            <!-- 9. 唐布拉百里畫廊 -->
+            <div class="spot-card">
+                <div class="spot-header">
+                    <span class="spot-name">🖼 唐布拉百里畫廊</span>
+                    <span class="spot-day">D9 · 唐布拉</span>
+                </div>
+                <div class="spot-body">
+                    <strong>「百里畫廊」並非指單一景點</strong>，而是從唐布拉到喬爾瑪<strong>一百多公里的沿線區域</strong>。沿途伊犁河谷一帶綠草如茵、風景如畫，溪流、草原、森林、怪石……一步一景，被譽為 <strong>「百里長卷、天然畫廊」</strong> 。<strong>仙女湖</strong>藏於山谷深處，湖水清澈倒映雪山，是百里畫廊的<strong>點睛之筆</strong>。
+                </div>
+                <div class="spot-tips">建議留足時間沿途欣賞，不趕路；山路補給點少，<strong>備足水與乾糧</strong>。</div>
+            </div>
+
+            <!-- 10. 獨庫公路 -->
+            <div class="spot-card">
+                <div class="spot-header">
+                    <span class="spot-name">🛣 獨庫公路</span>
+                    <span class="spot-day">D9～D10 · 天山山脈</span>
+                </div>
+                <div class="spot-body">
+                    獨庫公路北起克拉瑪依市獨山子區，南接阿克蘇地區庫車市，全長<strong>561公里</strong>，過半以上路段橫亙崇山峻嶺、穿越深川峽谷。被《中國國家地理》評選為 <strong>「縱貫天山脊樑的景觀大道」</strong> ，每年僅<strong>通車4個月</strong>左右。因<strong>168位烈士</strong>為修路犧牲，這條公路也是一條<strong>英雄之路</strong>。<br><br>
+                    <strong>核心體驗：</strong><br>
+                    • <strong>哈希勒根達坂</strong>（海拔約3,400米）：獨庫公路第一個高海拔達坂，夏季也能看到厚厚的「雪牆」 ，是標誌性打卡點。<br>
+                    • <strong>喬爾瑪烈士陵園：</strong>向築路英雄致敬，了解獨庫公路的血淚歷史。<br>
+                    • <strong>一日觀四季：</strong>從草原到雪山達坂，景觀急劇變換，天氣也隨海拔劇烈變化。
+                </div>
+                <div class="spot-tips">彎多坡陡，暈車者務必備藥；山區天氣多變，雨雪天更要小心；部分峽谷路段無信號；<strong>若遇封路可能臨時改道</strong>。</div>
+            </div>
+
+            <!-- 11. 烏魯木齊 -->
+            <div class="spot-card">
+                <div class="spot-header">
+                    <span class="spot-name">🕌 烏魯木齊</span>
+                    <span class="spot-day">D10～D12 · 烏魯木齊</span>
+                </div>
+                <div class="spot-body">
+                    新疆首府，絲綢之路重要樞紐。<br><br>
+                    <strong>國際大巴扎：</strong>全球規模最大的巴扎，各族手工藝品、乾果、地毯琳瑯滿目。<br>
+                    <strong>新疆博物館：</strong>珍藏絲路文物與乾屍展覽，建議提前預約。<br>
+                    <strong>和田二街：</strong>品嚐正宗新疆美食，烤肉、大盤雞、饢、酸奶應有盡有。
+                </div>
+                <div class="spot-tips">🛍 大巴扎記得砍價；羊肉串、大盤雞、饢不可錯過；博物館建議提前預約。</div>
+            </div>
+
+        </div>
+
+        <!-- ========================================================= -->
+        <!-- 五、穿搭與裝備 -->
+        <h2 id="sec5">五、穿搭與裝備指南</h2>
+
+        <h3>（一）洋蔥式穿法</h3>
+        <div class="card-grid">
+            <div class="card"><span class="card-title">🔹 內層</span> 速乾長袖或棉質短袖，避免厚重難乾</div>
+            <div class="card"><span class="card-title">🔸 中層</span> 薄刷毛、針織外套、背心或薄毛衣</div>
+            <div class="card"><span class="card-title">🧥 外層</span> 防風外套或輕羽絨（山區必備防風款）</div>
+            <div class="card"><span class="card-title">🧤 配件</span> 帽子、手套、圍巾（高海拔及清晨必備）</div>
+        </div>
+
+        <h3>（二）各地區氣溫與穿著參考（依據實際預報）</h3>
+        <div class="table-wrap">
+            <table>
+                <thead><tr><th>地區</th><th>白天</th><th>夜間</th><th>穿著重點</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>阿勒泰</strong></td><td>10～23℃（D1陣雨）</td><td>5～10℃</td><td>長袖＋防風薄外套，傍晚/遇雨加中層，備折疊傘</td></tr>
+                    <tr><td><strong>喀納斯／禾木</strong></td><td>5～30℃（清晨極冷，正午河谷炎熱）</td><td>0～8℃</td><td>終極洋蔥式！薄羽絨＋帽子＋手套。溫差超過25℃，外套務必隨身</td></tr>
+                    <tr><td><strong>賽里木湖</strong></td><td>13～19℃（風大體感降3-5℃）</td><td>2～6℃</td><td>防風外套＋刷毛中層。帽子要有綁帶，亮色圍巾防風又拍照</td></tr>
+                    <tr><td><strong>那拉提草原</strong></td><td>18～28℃（紫外線極強）</td><td>5～15℃</td><td>薄長袖＋防曬外套。騎馬穿長褲，防曬乳＋寬檐帽＋太陽眼鏡</td></tr>
+                    <tr><td><strong>烏魯木齊</strong></td><td>15～25℃（D11陰轉雨）</td><td>5～10℃</td><td>長袖＋薄外套，遇雨備傘，穿舒適好走的鞋</td></tr>
+                    <tr><td><strong>獨庫公路山區</strong></td><td>山腳20-25℃／垭口5-12℃</td><td>近0～5℃</td><td>洋蔥式＋薄羽絨＋防風外套＋帽子＋手套（缺一不可）</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3>（三）鞋子</h3>
+        <ul>
+            <li>✔ 全程最重要：已穿習慣、防滑、包覆性好的<strong>健走鞋</strong>。</li>
+            <li>✘ 不建議穿新鞋、涼鞋、高跟鞋。</li>
+            <li>✔ 鞋底要有紋路，木棧道、碎石路較安全。</li>
+            <li>✔ 另備舒適拖鞋／車上輕便鞋。</li>
+        </ul>
+
+        <h3>（四）拍照穿搭</h3>
+        <ul>
+            <li>草原、湖泊、雅丹地貌適合<strong>亮色或白色系</strong>（紅、黃、白）。</li>
+            <li>準備1～2條亮色圍巾或披肩。</li>
+            <li>喀贊其藍色街區適合白色或淺色衣物。</li>
+        </ul>
+
+        <!-- ========================================================= -->
+        <!-- 六、攜帶清單 -->
+        <h2 id="sec6">六、攜帶物品清單</h2>
+        <div class="card-grid">
+            <div class="card">
+                <div class="card-title">📁 證件與支付</div>
+                <ul style="margin:0; padding-left:18px;">
+                    <li>台胞證（效期6個月以上）</li>
+                    <li>身分證、護照（正本＋影本）</li>
+                    <li>保險資料、緊急聯絡人</li>
+                    <li>支付寶／微信支付（儲值）</li>
+                    <li>少量人民幣現金</li>
+                </ul>
+            </div>
+            <div class="card">
+                <div class="card-title">📱 電子用品</div>
+                <ul style="margin:0; padding-left:18px;">
+                    <li>手機、充電器、轉接插頭</li>
+                    <li>行動電源（3C認證）</li>
+                    <li>相機、記憶卡</li>
+                    <li>eSIM或國際漫遊</li>
+                </ul>
+            </div>
+            <div class="card">
+                <div class="card-title">👕 衣物與鞋類</div>
+                <ul style="margin:0; padding-left:18px;">
+                    <li>防風外套、輕羽絨/厚外套</li>
+                    <li>刷毛/針織中層、長袖、長褲</li>
+                    <li>保暖打底褲</li>
+                    <li>防滑健走鞋、舒適拖鞋</li>
+                </ul>
+            </div>
+            <div class="card">
+                <div class="card-title">🧴 防曬與保濕</div>
+                <ul style="margin:0; padding-left:18px;">
+                    <li><strong>高係數防曬乳</strong></li>
+                    <li>太陽眼鏡、寬檐帽/防風帽</li>
+                    <li>護唇膏、人工淚液</li>
+                    <li>保濕乳液</li>
+                </ul>
+            </div>
+            <div class="card">
+                <div class="card-title">💊 藥品與其他</div>
+                <ul style="margin:0; padding-left:18px;">
+                    <li>個人常用藥</li>
+                    <li><strong>暈車藥（必備）</strong></li>
+                    <li>折疊傘／輕便雨衣</li>
+                    <li>濕紙巾、衛生紙</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 隨身包 -->
+        <h3>⭐ 每日車上隨身包（五星推薦）</h3>
+        <div class="pack-list">
+            <span>保溫瓶</span><span>零食乾糧</span><span>頸枕／腰靠</span>
+            <span>濕紙巾</span><span>小垃圾袋</span><span>暈車袋</span>
+            <span>行動電源</span><span>充電線</span><span>外套／圍巾</span>
+            <span>輕便雨衣</span><span>常用藥</span>
+        </div>
+
+        <!-- ========================================================= -->
+        <!-- 七、重要提醒 -->
+        <h2 id="sec7">七、團員重要提醒</h2>
+
+        <div class="tip-box">
+            <div class="icon">🚐</div>
+            <div>
+                <h4 style="margin:0 0 6px 0;">長車程日：D5、D9、D10</h4>
+                <ul style="margin:0; padding-left:20px;">
+                    <li><strong>暈車藥</strong>：上車前30分鐘服用。</li>
+                    <li>每1～2小時於休息站下車活動伸展。</li>
+                    <li>車上備妥<strong>隨身包</strong>（見上方清單）。</li>
+                    <li>D9、D10為連續山路，請保留體力。</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="tip-box">
+            <div class="icon">☀️</div>
+            <div>
+                <h4 style="margin:0 0 6px 0;">保濕與防曬</h4>
+                <ul style="margin:0; padding-left:20px;">
+                    <li>主動喝溫水，不等口渴才喝。</li>
+                    <li>每日塗防曬並適時補擦。</li>
+                    <li>出門戴太陽眼鏡及帽子。</li>
+                    <li>護唇膏、人工淚液、保濕乳液隨時補擦。</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="tip-box">
+            <div class="icon">👥</div>
+            <div>
+                <h4 style="margin:0 0 6px 0;">行程與團體注意</h4>
+                <ul style="margin:0; padding-left:20px;">
+                    <li>司機兼嚮導（非持照導遊），提供駕駛、入住協助、簡單講解。</li>
+                    <li>全程正餐自理，大多可一起用餐。</li>
+                    <li>行程可能因天候、道路管制調整。</li>
+                    <li><strong>台胞證正本請隨身攜帶</strong>（新疆安檢多）。</li>
+                    <li>自由活動結伴同行，景區上下車確認人數。</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- ========================================================= -->
+        <!-- 八、時間與作息 -->
+        <h2 id="sec8">八、時間與作息提醒</h2>
+        <div class="card-grid">
+            <div class="card"><span class="card-title">⏰ 時差</span>新疆官方使用北京時間，當地作息晚2小時（午餐13:00，晚餐20:00）</div>
+            <div class="card"><span class="card-title">🌅 天黑</span>9月約20:30前後</div>
+            <div class="card"><span class="card-title">🌄 早起日</span>D3禾木晨霧5:30｜D7賽湖日出</div>
+            <div class="card"><span class="card-title">🌇 晚歸日</span>D4五彩灘約21:00返飯店</div>
+        </div>
+
+        <!-- ========================================================= -->
+        <!-- 九、住宿 -->
+        <h2 id="sec9">九、住宿一覽</h2>
+        <div class="hotel-grid">
+            <div class="hotel-item"><span class="day-label">D1 8/26</span> 阿勒泰桔子水晶酒店</div>
+            <div class="hotel-item"><span class="day-label">D2 8/27</span> 禾木肖·峙霓精品山居酒店</div>
+            <div class="hotel-item"><span class="day-label">D3 8/28</span> 停泊Stay自怡民宿（喀納斯景區）</div>
+            <div class="hotel-item"><span class="day-label">D4 8/29</span> 叁甸·觀景酒店（額爾齊斯河店）</div>
+            <div class="hotel-item"><span class="day-label">D5 8/30</span> 季楓國際酒店（奎屯）</div>
+            <div class="hotel-item"><span class="day-label">D6 8/31</span> 賽里木湖桔子水晶酒店</div>
+            <div class="hotel-item"><span class="day-label">D7 9/1</span> 伊寧福朋喜來登酒店</div>
+            <div class="hotel-item"><span class="day-label">D8 9/2</span> 那拉提拈花灣哈茵賽度假飯店</div>
+            <div class="hotel-item"><span class="day-label">D9 9/3</span> 桃里·孟克特隱世庄園</div>
+            <div class="hotel-item"><span class="day-label">D10 9/4</span> 烏魯木齊鎏金藝術酒店</div>
+            <div class="hotel-item"><span class="day-label">D11 9/5</span> 烏魯木齊鎏金藝術酒店</div>
+            <div class="hotel-item"><span class="day-label">D12 9/6</span> 返程</div>
+        </div>
+
+        <!-- ========================================================= -->
+        <!-- 十、旅遊合同（取自新疆旅遊手冊.html） -->
+        <h2 id="sec10">十、旅遊合同</h2>
+
+        <div class="contract-wrap">
+            <div class="contract-head">
+                <div class="contract-label">依據中華人民共和國國家旅遊局監管平台</div>
+                <div class="contract-title">新疆北疆12日環線 旅遊服務合同</div>
+                <div class="contract-sub">12301全國旅遊合同（12301官網可供查詢）</div>
+            </div>
+
+            <div class="contract-body">
+
+                <!-- 團費 -->
+                <div class="contract-price-box">
+                    <div class="price">
+                        <div class="amount">9,400</div>
+                        <div class="currency">人民幣 / 每人</div>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="info">
+                        <strong>出行人數：</strong>14人 ｜
+                        <strong>出行時間：</strong>2026年8月26日 – 9月6日（12天11夜）<br>
+                        含：包車費用、11晚住宿、指定景區門票、遊玩項目、接送機服務、旅遊意外保險及贈送服務
+                    </div>
+                </div>
+
+                <!-- 一、費用包含 -->
+                <h4 style="margin-top:0; margin-bottom:14px; color:#3d5a6d;">一、團費費用明細（費用包含）</h4>
+
+                <div class="contract-item">
+                    <div class="num">1</div>
+                    <div>
+                        <div class="item-title">車費</div>
+                        <div class="item-body">行程包車11天，共3輛1+1商務車。涵蓋：車輛使用費、燃油費、過路費、停車費、司機薪資、司機住宿及餐費，以及賽里木湖自駕油費補貼、那拉提自駕油費補貼。</div>
+                    </div>
+                </div>
+
+                <div class="contract-item">
+                    <div class="num">2</div>
+                    <div>
+                        <div class="item-title">酒店住宿</div>
+                        <div class="item-body">全程11晚住宿，均為四星至五鑽酒店或特色精品民宿。</div>
+                    </div>
+                </div>
+
+                <div class="contract-item">
+                    <div class="num">3</div>
+                    <div>
+                        <div class="item-title">景區門票</div>
+                        <div class="item-body">包含：賽里木湖門票＋自駕費、阿勒泰將軍山纜車門票、禾木門票、喀納斯門票、魔鬼城門票、五彩灘門票、那拉提空中草原門票＋自駕票、仙女湖門票、獨山子大峽谷門票。</div>
+                    </div>
+                </div>
+
+                <div class="contract-item">
+                    <div class="num">4</div>
+                    <div>
+                        <div class="item-title">遊玩項目</div>
+                        <div class="item-body">賽里木湖下午茶或帆船體驗（二選一）、圖瓦族家訪、那拉提草原騎馬。</div>
+                    </div>
+                </div>
+
+                <div class="contract-item">
+                    <div class="num">5</div>
+                    <div>
+                        <div class="item-title">往返接送機服務</div>
+                        <div class="item-body">往程（阿勒泰機場）及返程（烏魯木齊機場）接送各一次，全天候24小時服務。</div>
+                    </div>
+                </div>
+
+                <div class="contract-item">
+                    <div class="num">6</div>
+                    <div>
+                        <div class="item-title">全程旅遊意外保險</div>
+                        <div class="item-body">全程12天旅遊意外保險，每位旅客均享有完整保障。</div>
+                    </div>
+                </div>
+
+                <div class="contract-item">
+                    <div class="num">7</div>
+                    <div>
+                        <div class="item-title">合同保障</div>
+                        <div class="item-body">簽署國家旅遊局監管平台12301全國旅遊合同（12301官網可查）。</div>
+                    </div>
+                </div>
+
+                <div class="contract-item" style="background: #fcf6ed; border-color: #e6dacf;">
+                    <div class="num gift">贈</div>
+                    <div>
+                        <div class="item-title" style="color:#b5835a;">贈送服務</div>
+                        <div class="item-body">全程無人機旅拍服務、新疆特色酸奶一箱、乾果小零食、隨車礦泉水。</div>
+                    </div>
+                </div>
+
+                <!-- 二、費用不含 -->
+                <h4 style="margin-top: 28px; margin-bottom: 14px; color:#3d5a6d;">二、費用不含事項</h4>
+
+                <div class="contract-not-include">
+                    <span class="mark">①</span>
+                    <span>不含往返大交通（機票／火車票），旅客須自行安排及負擔。</span>
+                </div>
+                <div class="contract-not-include">
+                    <span class="mark">②</span>
+                    <span>全程不含正餐費用，正餐由旅客自理；司機兼嚮導可協助推薦當地特色餐廳。</span>
+                </div>
+                <div class="contract-not-include">
+                    <span class="mark">③</span>
+                    <span>不含專業導遊服務；行程安排由司機兼嚮導負責（服務職責詳見第三條）。</span>
+                </div>
+                <div class="contract-not-include">
+                    <span class="mark">④</span>
+                    <span>不含景區內自費娛樂項目及個人消費。</span>
+                </div>
+
+                <!-- 三、司機兼嚮導服務職責 -->
+                <h4 style="margin-top: 28px; margin-bottom: 14px; color:#3d5a6d;">三、司機兼嚮導服務職責說明</h4>
+
+                <div class="contract-driver-box">
+                    司機兼嚮導之工作職責範圍如下，本合同所提供之服務以下列項目為限：
+                    <ul>
+                        <li>駕駛旅遊營運車輛，負責行程中所有路段之安全接送</li>
+                        <li>協助旅客辦理各住宿酒店入住手續</li>
+                        <li>協助旅客搬運行李</li>
+                        <li>提供簡要行程講解及景區玩法介紹</li>
+                        <li>推薦當地特色餐廳及美食</li>
+                        <li>提供無人機旅拍服務（全程）</li>
+                    </ul>
+                    <div class="note">
+                        ※ 司機兼嚮導非持照專業導遊，不提供深度歷史文化解說。旅客如有需求，可自行安排景區內官方導覽服務。
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- 頁尾 -->
+        <div style="margin-top: 50px; border-top: 1px solid #ece6e0; padding-top: 25px; text-align: center; font-size: 14px; color: #b0a59a;">
+            新疆北疆環線 · 12天11晚 · 祝旅途愉快 ☀️
+            <br><span style="font-size: 12px;">行程可能因天候調整，請以當地實際狀況為準</span>
+        </div>
+
+    </div>
+</body>
+</html>
